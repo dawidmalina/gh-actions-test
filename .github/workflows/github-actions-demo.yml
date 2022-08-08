@@ -12,5 +12,7 @@ jobs:
       run: |
         curl https://gcpdiag.dev/gcpdiag.sh > gcpdiag
         uname -a
+        cat gcpdiag
+        docker info
         chmod +x gcpdiag
         ./gcpdiag lint --project=dummy-non-existing-project
