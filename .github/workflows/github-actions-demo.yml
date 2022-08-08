@@ -1,0 +1,16 @@
+name: GCP Diag test
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run GCP diag
+      run: |
+        curl https://gcpdiag.dev/gcpdiag.sh > gcpdiag
+        uname-a
+        chmod +x gcpdiag
+        ./gcpdiag lint --project=dummy-non-existing-project
