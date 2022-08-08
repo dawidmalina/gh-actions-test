@@ -15,4 +15,4 @@ jobs:
         cat gcpdiag
         docker info
         chmod +x gcpdiag
-        ./gcpdiag lint --project=dummy-non-existing-project
+        bash -x ./gcpdiag lint --project=dummy-non-existing-project
