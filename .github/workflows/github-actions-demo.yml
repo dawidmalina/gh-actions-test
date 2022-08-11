@@ -15,7 +15,8 @@ jobs:
         #cat gcpdiag
         #docker info
         chmod +x gcpdiag
-        ls -ld ~/.cache ~/.cache/gcpdiag-dockerized ~/.cache/gcpdiag-dockerized/cache.db
+        mkdir -p /home/runner/.cache/gcpdiag-dockerized
+        # ls -ld ~/.cache ~/.cache/gcpdiag-dockerized ~/.cache/gcpdiag-dockerized/cache.db
         echo "1 - skip"
         #docker run --rm -u 1001:121 -e USER=runner -e GROUP=docker -e SHELL=/bin/bash -e HOME -e LANG -e GOOGLE_AUTH_TOKEN -e CLOUD_SHELL -v /home/runner/.cache/gcpdiag-dockerized:/home/runner/.cache/gcpdiag -v /home/runner/.config/gcloud:/home/runner/.config/gcloud us-docker.pkg.dev/gcpdiag-dist/release/gcpdiag:0.56 /opt/gcpdiag/bin/gcpdiag lint --project=dummy-non-existing-project
         echo "2"
