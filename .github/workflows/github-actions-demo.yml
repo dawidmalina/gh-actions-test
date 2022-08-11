@@ -12,7 +12,9 @@ jobs:
       run: |
         curl https://gcpdiag.dev/gcpdiag.sh > gcpdiag
         uname -a
-        cat gcpdiag
-        docker info
+        #cat gcpdiag
+        #docker info
         chmod +x gcpdiag
-        bash -x ./gcpdiag lint --project=dummy-non-existing-project
+        exec docker run --rm -u 1001:121 -e USER=runner -e GROUP=docker -e SHELL=/bin/bash -e HOME -e LANG -e GOOGLE_AUTH_TOKEN -e CLOUD_SHELL -v /home/runner/.cache/gcpdiag-dockerized:/home/runner/.cache/gcpdiag -v /home/runner/.config/gcloud:/home/runner/.config/gcloud us-docker.pkg.dev/gcpdiag-dist/release/gcpdiag:0.56 /opt/gcpdiag/bin/gcpdiag lint --project=dummy-non-existing-project
+        exec docker run '' --rm -u 1001:121 -e USER=runner -e GROUP=docker -e SHELL=/bin/bash -e HOME -e LANG -e GOOGLE_AUTH_TOKEN -e CLOUD_SHELL -v /home/runner/.cache/gcpdiag-dockerized:/home/runner/.cache/gcpdiag -v /home/runner/.config/gcloud:/home/runner/.config/gcloud us-docker.pkg.dev/gcpdiag-dist/release/gcpdiag:0.56 /opt/gcpdiag/bin/gcpdiag lint --project=dummy-non-existing-project
+        #bash -x ./gcpdiag lint --project=dummy-non-existing-project
