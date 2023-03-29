@@ -13,8 +13,7 @@ on:
 
 jobs:
   call-terraform-workflow:
-#     uses: octo-org/example-repo/.github/workflows/reusable-workflow.yml@main
-    uses: dawidmalina/actions-hub/workflows/terraform-gcp.yml@main
+    uses: dawidmalina/actions-hub/.github/workflows/terraform-gcp.yml@main
     with:
       working_dir: '.'
       project_id: '123456'
