@@ -19,4 +19,4 @@ jobs:
       project_id: '123456'
     secrets:
       GOOGLE_CREDENTIALS: '222'
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
