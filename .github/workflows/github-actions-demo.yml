@@ -15,13 +15,13 @@ jobs:
           fetch-depth: 0  # To retrieve all commits
       - name: Get changed helm chart(s)
         id: changes-as-json
-        uses: dawidmalina/actions-hub/wrapped-changed-directories@main
+        uses: dawidmalina/actions-hub/wrapped-changed-directories@files
         with:
           dir_names_max_depth: "5"
           files: |
             **.*.tf
-#           files_ignore: |
-#             .github
+          files_ignore: |
+            .github
 
     outputs:
       all_changed_files: ${{ steps.changes-as-json.outputs.all_changed_files }}
