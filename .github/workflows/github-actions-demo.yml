@@ -16,8 +16,6 @@ jobs:
     name: "workflow"
     uses: dawidmalina/actions-hub/.github/workflows/terraform-gcp.yml@main
     with:
-      working_dir: '.'
       project_id: '123456'
     secrets:
       GOOGLE_CREDENTIALS: '222'
-#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
