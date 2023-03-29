@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 50  # To retrieve all commits
+          fetch-depth: 0  # To retrieve all commits
       - name: Get changed helm chart(s)
         id: changes-as-json
         uses: dawidmalina/actions-hub/wrapped-changed-directories@main
