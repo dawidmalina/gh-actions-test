@@ -1,26 +1,40 @@
-name: GCP Diag test
+name: QA GATE
 
 on:
-  push:
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  prepare:
+    name: Get changed charts(s)
     runs-on: ubuntu-latest
-
     steps:
-    - name: Run GCP diag
-      run: |
-        curl https://gcpdiag.dev/gcpdiag.sh > gcpdiag
-        uname -a
-        bash --version
-        #cat gcpdiag
-        #docker info
-        chmod +x gcpdiag
-        mkdir -p /home/runner/.cache/gcpdiag-dockerized
-        # ls -ld ~/.cache ~/.cache/gcpdiag-dockerized ~/.cache/gcpdiag-dockerized/cache.db
-        #echo "1 - skip"
-        #docker run --rm -u 1001:121 -e USER=runner -e GROUP=docker -e SHELL=/bin/bash -e HOME -e LANG -e GOOGLE_AUTH_TOKEN -e CLOUD_SHELL -v /home/runner/.cache/gcpdiag-dockerized:/home/runner/.cache/gcpdiag -v /home/runner/.config/gcloud:/home/runner/.config/gcloud us-docker.pkg.dev/gcpdiag-dist/release/gcpdiag:0.56 /opt/gcpdiag/bin/gcpdiag lint --project=dummy-non-existing-project
-        #echo "2 - skip"
-        #docker run '' --rm -u 1001:121 -e USER=runner -e GROUP=docker -e SHELL=/bin/bash -e HOME -e LANG -e GOOGLE_AUTH_TOKEN -e CLOUD_SHELL -v /home/runner/.cache/gcpdiag-dockerized:/home/runner/.cache/gcpdiag -v /home/runner/.config/gcloud:/home/runner/.config/gcloud us-docker.pkg.dev/gcpdiag-dist/release/gcpdiag:0.56 /opt/gcpdiag/bin/gcpdiag lint --project=dummy-non-existing-project
-        sed -i 's/run "\$USE_TTY"/run \$USE_TTY/' gcpdiag
-        bash -x ./gcpdiag lint --project=dummy-non-existing-project
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 50  # To retrieve all commits
+      - name: Get changed helm chart(s)
+        id: changes-as-json
+        uses: dawidmalina/actions-hub/wrapped-changed-directories@main
+        with:
+          dir_names_max_depth: "5"
+          files_ignore: |
+            .github
+
+    outputs:
+      all_changed_files: ${{ steps.changes-as-json.outputs.all_changed_files }}
+      any_changed: ${{ steps.changes-as-json.outputs.any_changed }}
+
+  validate:
+    name: Validate changed helm chart(s)
+    if: needs.prepare.outputs.any_changed == 'true'
+    runs-on: ubuntu-latest
+    needs: prepare
+    strategy:
+      matrix:
+        dir: ${{ fromJson(needs.prepare.outputs.all_changed_files) }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run script file
+        run: |
+           echo ${{ matrix.dir }}
