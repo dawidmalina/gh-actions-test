@@ -16,5 +16,5 @@ jobs:
     name: "workflow"
     uses: dawidmalina/actions-hub/.github/workflows/terraform-gcp.yml@main
     with:
-      project_id: '123456'
+      product: 'malina'
     secrets: inherit
