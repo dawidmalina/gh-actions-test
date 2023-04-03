@@ -17,5 +17,4 @@ jobs:
     uses: dawidmalina/actions-hub/.github/workflows/terraform-gcp.yml@main
     with:
       project_id: '123456'
-    secrets:
-      GOOGLE_CREDENTIALS: '222'
+    secrets: inherit
