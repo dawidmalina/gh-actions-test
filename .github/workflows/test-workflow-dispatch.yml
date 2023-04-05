@@ -1,0 +1,12 @@
+name: Terraform Apply
+
+on:
+  workflow_dispatch:
+ 
+jobs:
+  call-terraform-workflow:
+    name: "workflow"
+    uses: dawidmalina/actions-hub/.github/workflows/terraform-apply-gcp.yml@main
+    with:
+      product: 'astrato'
+    secrets: inherit
