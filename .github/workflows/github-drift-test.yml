@@ -3,8 +3,8 @@ name: Terraform Drift
 on:
   workflow_dispatch:
   schedule:
-    - cron:  "*/5 * * * *"
-#     - cron: "0 0 * * 6" # Runs every Saturday at midnight
+#    - cron:  "*/5 * * * *"
+     - cron: "0 0 * * 6" # Runs every Saturday at midnight
 
 jobs:
   call-terraform-workflow:
