@@ -2,7 +2,12 @@ name: Terraform Apply
 
 on:
   workflow_dispatch:
- 
+    inputs:
+      project_path:
+        description: "Define project path"
+        required: true
+        type: string
+
 jobs:
   call-terraform-workflow:
     name: "workflow"
