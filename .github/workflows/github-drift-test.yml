@@ -3,13 +3,14 @@ name: Terraform Drift
 on:
   workflow_dispatch:
   schedule:
-    - cron:  '*/5 * * * *'
-#     - cron: '0 0 * * 6' # Runs every Saturday at midnight
+    - cron:  "*/5 * * * *"
+#     - cron: "0 0 * * 6" # Runs every Saturday at midnight
 
 jobs:
   call-terraform-workflow:
     name: "workflow"
     uses: dawidmalina/actions-hub/.github/workflows/terraform-drift-gcp.yml@main
     with:
-      product: 'astrato'
+      product: "astrato"
+      slack_channel: "U04NWLG0PJL"
     secrets: inherit
