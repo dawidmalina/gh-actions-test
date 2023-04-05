@@ -1,0 +1,14 @@
+name: Terraform Drift
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '*/5 * * * *'
+
+jobs:
+  call-terraform-workflow:
+    name: "workflow"
+    uses: dawidmalina/actions-hub/.github/workflows/terraform-drift-gcp.yml.yml@main
+    with:
+      product: 'astrato'
+    secrets: inherit
