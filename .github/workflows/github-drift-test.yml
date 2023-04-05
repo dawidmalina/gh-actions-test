@@ -8,7 +8,7 @@ on:
 jobs:
   call-terraform-workflow:
     name: "workflow"
-    uses: dawidmalina/actions-hub/.github/workflows/terraform-drift-gcp.yml.yml@main
+    uses: dawidmalina/actions-hub/.github/workflows/terraform-drift-gcp.yml@main
     with:
       product: 'astrato'
     secrets: inherit
