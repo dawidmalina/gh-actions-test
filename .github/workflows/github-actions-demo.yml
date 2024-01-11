@@ -14,7 +14,7 @@ on:
 jobs:
   call-terraform-workflow:
     name: "workflow"
-    uses: dawidmalina/actions-hub/.github/workflows/terraform-gcp.yml@main
+    uses: dawidmalina/actions-hub/.github/workflows/simple-test.yml@main
     with:
-      product: 'malina'
+      # product: 'malina'
     secrets: inherit
