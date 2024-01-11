@@ -15,6 +15,6 @@ jobs:
   call-terraform-workflow:
     name: "workflow"
     uses: dawidmalina/actions-hub/.github/workflows/simple-test.yml@main
-    with:
-      # product: 'malina'
+    # with:
+    #   product: 'malina'
     secrets: inherit
