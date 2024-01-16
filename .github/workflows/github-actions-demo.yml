@@ -59,3 +59,8 @@ jobs:
     needs:
       - bartender
       - unit-tests
+      - linting
+    steps:
+      - name: Linting
+        run: |-
+          echo "e2e_fetch_token"
