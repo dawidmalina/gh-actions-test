@@ -65,9 +65,9 @@ jobs:
         extension:
           - VizlibWritebackTable
           - VizlibInputForm
-        # servers:
-        #   - vlci04
-        #   - vlci05
+        server:
+          - vlci04
+          - vlci05
     steps:
       - run: |-
-          echo "e2e_fetch_token ${{ matrix.extension }}"
+          echo "e2e_fetch_token ${{ matrix.extension }} ${{ matrix.server: }}"
