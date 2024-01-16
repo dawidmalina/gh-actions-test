@@ -12,9 +12,50 @@ on:
       - closed # needed to handle action after merge
 
 jobs:
-  call-terraform-workflow:
-    name: "workflow"
-    uses: dawidmalina/actions-hub/.github/workflows/simple-test.yml@main
-    # with:
-    #   product: 'malina'
-    secrets: inherit
+  # call-terraform-workflow:
+  #   name: "workflow"
+  #   uses: dawidmalina/actions-hub/.github/workflows/simple-test.yml@main
+  #   # with:
+  #   #   product: 'malina'
+  #   secrets: inherit
+
+  bartender:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.17
+    strategy:
+      matrix:
+        extension:
+          - VizlibWritebackTable
+          - VizlibInputForm
+    steps:
+      - name: bartender
+        run: |-
+          echo "bartender ${{ matrix.extension }}"
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.17
+    steps:
+      - name: Unit tests
+        run: |-
+          echo "unit-tests"
+
+  linting:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.17
+    steps:
+      - name: Linting
+        run: |-
+          echo "linting"
+
+  e2e_fetch_token:
+    if: false == ${{ inputs.e2e-regression }}
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.17
+    needs:
+      - bartender
+      - unit-tests
