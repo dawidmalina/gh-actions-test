@@ -69,6 +69,5 @@ jobs:
         #   - vlci04
         #   - vlci05
     steps:
-      - name: Linting
-        run: |-
+      - run: |-
           echo "e2e_fetch_token ${{ matrix.extension }}"
