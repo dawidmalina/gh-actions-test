@@ -60,7 +60,15 @@ jobs:
       - bartender
       - unit-tests
       - linting
+    strategy:
+      matrix:
+        extension:
+          - VizlibWritebackTable
+          - VizlibInputForm
+        # servers:
+        #   - vlci04
+        #   - vlci05
     steps:
       - name: Linting
         run: |-
-          echo "e2e_fetch_token"
+          echo "e2e_fetch_token ${{ matrix.extension }}"
