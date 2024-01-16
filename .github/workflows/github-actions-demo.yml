@@ -71,3 +71,29 @@ jobs:
     steps:
       - run: |-
           echo "e2e_fetch_token ${{ matrix.extension }} ${{ matrix.server }}"
+
+  e2e_tests:
+    if: false == ${{ inputs.e2e-regression }}
+    runs-on: ubuntu-latest
+    container:
+      image: node:18.17
+    needs:
+      - e2e_fetch_token
+    strategy:
+      matrix:
+        extension:
+          - VizlibWritebackTable
+          - VizlibInputForm
+        server:
+          - vlci04
+          - vlci05
+        index:
+          - 0
+          - 1
+    steps:
+      - run: |-
+          echo "e2e_tests ${{ matrix.extension }} ${{ matrix.server }} ${{ matrix.index }}"
+      - run: |
+          echo "merge-test-results ${{ matrix.extension }} ${{ matrix.server }}"
+      - run: |
+          echo "Notify tests results ${{ matrix.extension }} ${{ matrix.server }}"
