@@ -70,4 +70,4 @@ jobs:
           - vlci05
     steps:
       - run: |-
-          echo "e2e_fetch_token ${{ matrix.extension }} ${{ matrix.server: }}"
+          echo "e2e_fetch_token ${{ matrix.extension }} ${{ matrix.server }}"
