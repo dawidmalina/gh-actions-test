@@ -28,11 +28,10 @@ jobs:
           echo ${{ github.actor }}
           echo ${{ github.triggering_actor }}
 
-          echo ${{ inputs.approvers }}
-
+          # echo ${{ inputs.approvers }}
           # echo ${{ fromJSON(inputs.approvers) }}
 
-          # node .github/workflows/test.js "${{ fromJSON(inputs.approvers) }}" ${{ github.triggering_actor }}
+          node .github/workflows/test.js "${{ inputs.approvers }}" ${{ github.triggering_actor }}
 # jobs:
 #   call-terraform-workflow:
 #     name: "workflow"
