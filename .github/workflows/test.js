@@ -6,7 +6,8 @@ const actor = inputs[3]
 console.log(approvers)
 console.log(actor)
 
-const aaaa = JSON.stringify(approvers)
+// JSON.parse(data)
+const aaaa = JSON.parse(approvers)
 console.log(aaaa)
 
 if (Array.isArray(approvers)) {
