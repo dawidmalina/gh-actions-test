@@ -9,10 +9,18 @@ on:
         type: string
 
 jobs:
-  call-terraform-workflow:
-    name: "workflow"
-    uses: dawidmalina/actions-hub/.github/workflows/terraform-apply-gcp.yml@main
-    with:
-      product: 'astrato'
-      project_path: ${{ inputs.project_path }}
-    secrets: inherit
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: verify actor
+        run: |
+          echo ${{ github.actor }}
+          echo ${{ github.triggering_actor }}
+# jobs:
+#   call-terraform-workflow:
+#     name: "workflow"
+#     uses: dawidmalina/actions-hub/.github/workflows/terraform-apply-gcp.yml@main
+#     with:
+#       product: 'astrato'
+#       project_path: ${{ inputs.project_path }}
+#     secrets: inherit
