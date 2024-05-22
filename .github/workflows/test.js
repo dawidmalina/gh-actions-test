@@ -1,21 +1,17 @@
 const inputs = process.argv
 
-const approvers = inputs[2]
+const approversRaw = inputs[2]
 const actor = inputs[3]
 
-console.log(approvers)
-console.log(actor)
-
-// JSON.parse(data)
-const aaaa = JSON.parse(approvers)
-console.log(aaaa)
+const approvers = approversRaw.split(',')
+console.log(`Verify if ${actor} is one of the approvers: [${approvers}]`)
 
 if (Array.isArray(approvers)) {
   // check if actor is in the approvers list
-  if (approvers.contains(actor)) {
-    console.log("actor is valid approvers")
+  if (approvers.includes(actor)) {
+    console.log(`${actor} is valid approver`)
   } else {
-    console.log("actor is not valid approvers")
+    console.log(`${actor} is not valid approvers`)
     process.exit(1)
   }
 } else {
