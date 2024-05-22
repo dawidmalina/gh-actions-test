@@ -11,10 +11,9 @@ on:
         description: "Define workflow approvers"
         type: string
         default: |
-          [
             "k-madejski",
-          ]
-        
+            "aaaa",
+            "bbbb",
 
 
 jobs:
@@ -31,9 +30,9 @@ jobs:
 
           echo ${{ inputs.approvers }}
 
-          echo ${{ fromJSON(inputs.approvers) }}
+          # echo ${{ fromJSON(inputs.approvers) }}
 
-          node .github/workflows/test.js "${{ fromJSON(inputs.approvers) }}" ${{ github.triggering_actor }}
+          # node .github/workflows/test.js "${{ fromJSON(inputs.approvers) }}" ${{ github.triggering_actor }}
 # jobs:
 #   call-terraform-workflow:
 #     name: "workflow"
