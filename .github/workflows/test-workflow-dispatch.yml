@@ -26,7 +26,7 @@ jobs:
           echo ${{ github.actor }}
           echo ${{ github.triggering_actor }}
 
-          echo ${{ fromJSON(inputs.approvers) }} | jq
+          echo ${{ fromJSON(inputs.approvers) }}
 # jobs:
 #   call-terraform-workflow:
 #     name: "workflow"
