@@ -20,6 +20,8 @@ on:
 jobs:
   promote:
     runs-on: ubuntu-latest
+    container:
+      image: node:18.19
     steps:
       - name: verify actor
         run: |
