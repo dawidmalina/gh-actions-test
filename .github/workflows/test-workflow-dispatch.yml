@@ -32,7 +32,7 @@ jobs:
 
           echo ${{ fromJSON(inputs.approvers) }}
 
-          node test.js "${{ fromJSON(inputs.approvers) }}" ${{ github.triggering_actor }}
+          node .github/workflows/test.js "${{ fromJSON(inputs.approvers) }}" ${{ github.triggering_actor }}
 # jobs:
 #   call-terraform-workflow:
 #     name: "workflow"
