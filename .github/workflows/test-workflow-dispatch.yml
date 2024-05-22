@@ -29,6 +29,8 @@ jobs:
           echo ${{ inputs.approvers }}
 
           echo ${{ fromJSON(inputs.approvers) }}
+
+          node test.js "${{ fromJSON(inputs.approvers) }}" ${{ github.triggering_actor }}
 # jobs:
 #   call-terraform-workflow:
 #     name: "workflow"
