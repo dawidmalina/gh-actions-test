@@ -7,6 +7,15 @@ on:
         description: "Define project path (ex gcp/prod/global)"
         required: true
         type: string
+      approvers:
+        description: "Define workflow approvers"
+        type: string
+        default: |
+          [
+            "k-madejski",
+          ]
+        
+
 
 jobs:
   promote:
@@ -16,6 +25,8 @@ jobs:
         run: |
           echo ${{ github.actor }}
           echo ${{ github.triggering_actor }}
+
+          echo ${{ fromJSON(inputs.approvers) }} | jq
 # jobs:
 #   call-terraform-workflow:
 #     name: "workflow"
