@@ -23,6 +23,7 @@ jobs:
     container:
       image: node:18.19
     steps:
+      - uses: actions/checkout@v4
       - name: verify actor
         run: |
           echo ${{ github.actor }}
