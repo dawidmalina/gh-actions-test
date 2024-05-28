@@ -3,7 +3,7 @@ name: Test release
 on:
   push:
     tags:
-      - 'v*'
+      - '**/v*'
     branches-ignore:
       - '*'
 
