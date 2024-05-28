@@ -2,7 +2,7 @@ name: Test release
 on:
   push:
     tags:
-      - 'v*-test*' ## /^v.*-test.*/
+      - 'v*'
     branches-ignore:
       - '*'
 
