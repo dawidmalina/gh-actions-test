@@ -1,0 +1,16 @@
+name: Test release
+on:
+  push:
+    tags:
+      - 'v*-test*' ## /^v.*-test.*/
+    branches-ignore:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: verify actor
+        run: |
+          echo ${{ github.actor }}
+          echo ${{ github.event }}
