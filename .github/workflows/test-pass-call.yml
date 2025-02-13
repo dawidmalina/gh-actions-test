@@ -1,0 +1,27 @@
+on:
+  workflow_call:
+    inputs:
+      env_vars:
+        description: "Define environment variables to pass to workflow"
+        type: string
+        required: true
+
+jobs:
+  parse-envs:
+    runs-on: ubuntu-latest
+    # env:
+    #   env_vars: ${{ inputs.env_vars }}
+    steps:
+      - name: Decode envs as environment variables
+        run: |
+          for i in ${{ inputs.env_vars }}; do
+            i=$( echo $i | sed 's/=.*//g')=$(echo ${i#*=} )
+            echo $i
+            echo ${i#*=}
+            # echo ::add-mask::${i#*=}
+            printf '%s\n' "$i" >> $GITHUB_ENV
+          done
+      - name: Validate envs
+        run: |
+          echo $VAR1 ${{ env.VAR1 }}
+          echo $VAR2 # or ${{ env.VAR2 }}

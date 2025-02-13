@@ -1,0 +1,14 @@
+name: Test Pass Envs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-test-pass-workflow:
+    name: "workflow"
+    uses: dawidmalina/gh-actions-test/blob/main/.github/workflows/test-pass-call.yml@main
+    with:
+      env_vars: |
+        VAR1="AAA"
+        VAR2="BBB"
+    secrets: inherit
