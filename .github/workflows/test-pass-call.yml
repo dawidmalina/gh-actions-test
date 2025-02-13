@@ -4,7 +4,8 @@ on:
       env_vars:
         description: "Define environment variables to pass to workflow"
         type: string
-        required: true
+        required: false
+        default: ''
 
 jobs:
   parse-envs:
@@ -13,6 +14,7 @@ jobs:
       env_vars: ${{ inputs.env_vars }}
     steps:
       - name: Decode envs as environment variables
+        if: inputs.env_vars != ''
         run: |
           # debug
           echo $env_vars
