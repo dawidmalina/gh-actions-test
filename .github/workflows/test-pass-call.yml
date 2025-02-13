@@ -9,17 +9,19 @@ on:
 jobs:
   parse-envs:
     runs-on: ubuntu-latest
-    # env:
-    #   env_vars: ${{ inputs.env_vars }}
+    env:
+      env_vars: ${{ inputs.env_vars }}
     steps:
       - name: Decode envs as environment variables
         run: |
 
-          echo ${{ inputs.env_vars }} | tr '\n' ' '
+          echo $env_vars
+
+          # echo ${{ inputs.env_vars }} | tr '\n' ' '
 
           # for i in ${{ inputs.env_vars }}; do echo "-"$i; done
 
-          for i in $( echo ${{ inputs.env_vars }} | tr '\n' ' ' ); do echo "- "$i; done
+          # for i in $( echo ${{ inputs.env_vars }} | tr '\n' ' ' ); do echo "- "$i; done
 
           # for i in $( echo $envs ); do
           #   i=$( echo $i | sed 's/=.*//g')=$(echo ${i#*=} )
