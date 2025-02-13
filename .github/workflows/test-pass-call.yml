@@ -20,7 +20,7 @@ jobs:
           for e in $env_vars; do
             echo "- "$e;
 
-            i=$( echo $e | sed 's/=.*//g')=$(echo ${i#*=} )
+            i=$( echo $e | sed 's/=.*//g')=$(echo ${e#*=} )
             echo $i
             echo ${i#*=}
           done
