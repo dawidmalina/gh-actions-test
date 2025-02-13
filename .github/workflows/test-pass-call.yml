@@ -15,6 +15,13 @@ jobs:
       - name: Decode envs as environment variables
         run: |
           envs=${{ inputs.env_vars }}
+
+          echo ${{ inputs.env_vars }}
+
+          for i in ${{ inputs.env_vars }}; do echo "-"$i; done
+
+          for i in $( echo ${{ inputs.env_vars }} ); do echo "-"$i; done
+
           for i in $( echo $envs ); do
             i=$( echo $i | sed 's/=.*//g')=$(echo ${i#*=} )
             echo $i
