@@ -14,28 +14,15 @@ jobs:
     steps:
       - name: Decode envs as environment variables
         run: |
-
+          # debug
           echo $env_vars
 
           for e in $env_vars; do
-            echo "- "$e;
-
             i=$( echo $e | sed 's/=.*//g')=$(echo ${e#*=} )
-
-            echo $i
-            echo ${i#*=}
-
             printf '%s\n' "$i" >> $GITHUB_ENV
           done
 
-          # for i in $( echo $envs ); do
-          #   i=$( echo $i | sed 's/=.*//g')=$(echo ${i#*=} )
-          #   echo $i
-          #   echo ${i#*=}
-          #   # echo ::add-mask::${i#*=}
-          #   printf '%s\n' "$i" >> $GITHUB_ENV
-          # done
       - name: Validate envs
         run: |
           echo $VAR1 ${{ env.VAR1 }}
-          echo $VAR2 # or ${{ env.VAR2 }}
+          echo $VAR2 ${{ env.VAR2 }}
