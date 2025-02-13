@@ -21,8 +21,11 @@ jobs:
             echo "- "$e;
 
             i=$( echo $e | sed 's/=.*//g')=$(echo ${e#*=} )
+
             echo $i
             echo ${i#*=}
+
+            printf '%s\n' "$i" >> $GITHUB_ENV
           done
 
           # for i in $( echo $envs ); do
