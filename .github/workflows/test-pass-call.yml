@@ -9,20 +9,29 @@ on:
 
 jobs:
   parse-envs:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       env_vars: ${{ inputs.env_vars }}
     steps:
       - name: Decode envs as environment variables
         if: inputs.env_vars != ''
         run: |
+      #     # debug
+      #     echo $env_vars
+
+      #     for e in $env_vars; do
+      #       i=$( echo $e | sed 's/=.*//g')=$(echo ${e#*=} )
+      #       printf '%s\n' "$i" >> $GITHUB_ENV
+      #     done
+
           # debug
           echo $env_vars
 
-          for e in $env_vars; do
-            i=$( echo $e | sed 's/=.*//g')=$(echo ${e#*=} )
-            printf '%s\n' "$i" >> $GITHUB_ENV
-          done
+          $env_vars.Split(" ") | ForEach-Object {
+            $name, $value = $_ -split "=", 2
+            Add-Content -Path $env:GITHUB_ENV -Value "$name=$value"
+          }
 
       - name: Validate envs
         run: |

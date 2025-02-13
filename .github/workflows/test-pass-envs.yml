@@ -7,8 +7,8 @@ jobs:
   call-test-pass-workflow:
     name: "workflow"
     uses: ./.github/workflows/test-pass-call.yml
-    # with:
-    #   env_vars: |
-    #     VAR1="AAA"
-    #     VAR2="BBB"
+    with:
+      env_vars: |
+        VAR1="AAA"
+        VAR2="BBB"
     secrets: inherit
